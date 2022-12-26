@@ -3,6 +3,7 @@ import Inputs from "./components/Inputs/Inputs.js";
 import { useState } from "react";
 import Context from "./context";
 import ItemCard from "./components/ItemCard/ItemCard.js";
+import Header from "./components/Header/Header.js";
 import {
   StyledDivApp,
   StyledDivListContainer,
@@ -83,12 +84,17 @@ function App() {
           duplicateSetter,
         }}
       >
+        <Header user={"PEPE"}></Header>
         {input}
         <StyledDivListContainer>
           <StyledUlList>
             {list.length > 0 &&
               list.map((item, index) => {
-                return <ItemCard index={index} item={item} />;
+                return (
+                  <li data-id={index} key={index}>
+                    <ItemCard index={index + 1} item={item} />
+                  </li>
+                );
               })}
           </StyledUlList>
         </StyledDivListContainer>

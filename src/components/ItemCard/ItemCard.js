@@ -18,61 +18,55 @@ import {
   StyledDivItemContainer,
   StyledImage,
 } from "./ItemCard.styled.js";
-function ItemCard(props) {
+
+function ItemCard({ index, item }) {
   const context = useContext(Context);
   const { deleteHandler } = context;
   const { editSetter } = context;
   const { duplicateSetter } = context;
   return (
-    <li data-id={props.key} key={props.index}>
-      <StyledDivRecordContainer>
-        <StyledDivItemContainer>
-          <StyledDivRecordIndex>{props.index + 1}</StyledDivRecordIndex>
-          <StyledDivImageContainer>
-            <StyledImage
-              width="80px"
-              height="80px"
-              src={props.item.picture}
-              alt={props.item.item}
-            ></StyledImage>
-          </StyledDivImageContainer>
-          <StyledDivRecordInfo>
-            <StyledDivInfoPart>{props.item.item}</StyledDivInfoPart>
-            <StyledDivInfoPart>
-              Cantidad: {props.item.quantity}
-            </StyledDivInfoPart>
-          </StyledDivRecordInfo>
-        </StyledDivItemContainer>
-        <StyledDivActionIcons>
-          <IconButton onClick={() => editSetter(props.item)} aria-label="edit">
-            <EditIcon />
-          </IconButton>
-          <IconButton
-            onClick={() => duplicateSetter(props.item)}
-            aria-label="duplicate"
-          >
-            <DuplicateIcon />
-          </IconButton>
-          <IconButton
-            onClick={() => deleteHandler(props.item)}
-            aria-label="delete"
-          >
-            <DeleteIcon />
-          </IconButton>
-        </StyledDivActionIcons>
-        <StyledDivActionButtons>
-          <StyledDivEditButton onClick={() => editSetter(props.item)}>
-            Edit
-          </StyledDivEditButton>
-          <StyledDivDuplicateButton onClick={() => duplicateSetter(props.item)}>
-            Duplicate
-          </StyledDivDuplicateButton>
-          <StyledDivDeleteButton onClick={() => deleteHandler(props.item)}>
-            Delete
-          </StyledDivDeleteButton>
-        </StyledDivActionButtons>
-      </StyledDivRecordContainer>
-    </li>
+    <StyledDivRecordContainer>
+      <StyledDivItemContainer>
+        <StyledDivRecordIndex>{index}</StyledDivRecordIndex>
+        <StyledDivImageContainer>
+          <StyledImage
+            width="80px"
+            height="80px"
+            src={item.picture}
+            alt={item.item}
+          ></StyledImage>
+        </StyledDivImageContainer>
+        <StyledDivRecordInfo>
+          <StyledDivInfoPart>{item.item}</StyledDivInfoPart>
+          <StyledDivInfoPart>Cantidad: {item.quantity}</StyledDivInfoPart>
+        </StyledDivRecordInfo>
+      </StyledDivItemContainer>
+      <StyledDivActionIcons>
+        <IconButton onClick={() => editSetter(item)} aria-label="edit">
+          <EditIcon />
+        </IconButton>
+        <IconButton
+          onClick={() => duplicateSetter(item)}
+          aria-label="duplicate"
+        >
+          <DuplicateIcon />
+        </IconButton>
+        <IconButton onClick={() => deleteHandler(item)} aria-label="delete">
+          <DeleteIcon />
+        </IconButton>
+      </StyledDivActionIcons>
+      <StyledDivActionButtons>
+        <StyledDivEditButton onClick={() => editSetter(item)}>
+          Edit
+        </StyledDivEditButton>
+        <StyledDivDuplicateButton onClick={() => duplicateSetter(item)}>
+          Duplicate
+        </StyledDivDuplicateButton>
+        <StyledDivDeleteButton onClick={() => deleteHandler(item)}>
+          Delete
+        </StyledDivDeleteButton>
+      </StyledDivActionButtons>
+    </StyledDivRecordContainer>
   );
 }
 

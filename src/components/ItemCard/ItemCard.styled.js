@@ -38,6 +38,7 @@ export const StyledDivRecordIndex = styled.div`
   width: 30px;
   background: ${GreenColor};
   border-radius: 100px;
+  text-align: center;
 `;
 
 export const StyledDivImageContainer = styled.div`
@@ -84,6 +85,7 @@ export const StyledDivInfoPart = styled.div`
 `;
 
 const StyledButtons = styled.div`
+  text-align: center;
   width: 100%;
 `;
 export const StyledDivEditButton = styled(StyledButtons)`
