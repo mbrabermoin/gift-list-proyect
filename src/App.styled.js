@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledDivApp = styled.div`
-  margin-top: 50px;
   text-align: center;
 `;
 

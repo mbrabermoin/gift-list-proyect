@@ -1,54 +1,55 @@
 import React, { useContext, useEffect, useState } from "react";
 import Context from "../../context";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import Button from "../Button/Button";
+import TextfieldComp from "../Textfield/Textfield";
+import { StyledButtonsContainer } from "./Inputs.styled";
 
-function Inputs(props) {
-  const [item, setItem] = useState(props.item.item);
-  const [quantity, setQuantity] = useState(props.item.quantity);
-  const [picture, setPicture] = useState(props.item.picture);
-  const [oldItem, setOldItem] = useState(props.item.item);
+function Inputs({ item, update }) {
+  const [name, setName] = useState(item.name);
+  const [quantity, setQuantity] = useState(item.quantity);
+  const [image, setImage] = useState(item.image);
+  const [oldName, setOldName] = useState(item.name);
   const context = useContext(Context);
   const { submitHandler } = context;
   const { updateHandler } = context;
   const { addSetter } = context;
   useEffect(() => {
-    setItem(props.item.item);
-    setOldItem(props.item.item);
-    setQuantity(props.item.quantity);
-    setPicture(props.item.picture);
-  }, [props.item]);
+    setName(item.name);
+    setOldName(item.name);
+    setQuantity(item.quantity);
+    setImage(item.image);
+  }, [item]);
 
-  const changeItemHandler = (e) => {
-    setItem(e.target.value);
+  const changeNameHandler = (e) => {
+    setName(e.target.value);
   };
-  const changePictureHandler = (e) => {
-    setPicture(e.target.value);
+  const changeImageHandler = (e) => {
+    setImage(e.target.value);
   };
   const changeQtyHandler = (e) => {
     setQuantity(e.target.value);
   };
   const addElement = () => {
-    if (item.trim() !== "" && quantity > 0) {
-      submitHandler(item, quantity, picture);
-      setItem("");
+    if (name.trim() !== "" && quantity > 0) {
+      submitHandler(name, quantity, image);
+      setName("");
       setQuantity(0);
-      setPicture("");
+      setImage("");
       addSetter();
     }
   };
   const updateElement = () => {
-    if (item.trim() !== "" && quantity > 0) {
-      updateHandler(oldItem, item, quantity, picture);
-      setItem("");
+    if (name.trim() !== "" && quantity > 0) {
+      updateHandler(oldName, name, quantity, image);
+      setName("");
       setQuantity(0);
-      setPicture("");
+      setImage("");
       addSetter();
     }
   };
   const addElementEnter = (e) => {
     if (e.key === "Enter") {
-      if (props.update) {
+      if (update) {
         updateElement();
       } else {
         addElement();
@@ -56,78 +57,55 @@ function Inputs(props) {
     }
   };
   const clearInputs = () => {
-    setItem("");
+    setName("");
     setQuantity(0);
-    setPicture("");
+    setImage("");
     addSetter();
   };
   return (
     <div>
-      <Context.Provider value={{ item, quantity }}>
+      <div>
         <div>
-          <div>
-            <TextField
-              id="item"
-              onKeyPress={(e) => {
-                addElementEnter(e);
-              }}
-              label="Item"
-              variant="standard"
-              value={item}
-              onChange={changeItemHandler}
-            />
-            <TextField
-              id="quantity"
-              onKeyPress={(e) => {
-                addElementEnter(e);
-              }}
-              type="number"
-              label="Cantidad"
-              variant="standard"
-              value={quantity}
-              onChange={changeQtyHandler}
-            />
-          </div>
-          <TextField
-            id="picture"
+          <TextfieldComp
+            id="name"
+            label="Name"
+            initialValue={name}
+            onChange={changeNameHandler}
             onKeyPress={(e) => {
               addElementEnter(e);
             }}
-            label="Foto URL"
-            variant="standard"
-            value={picture}
-            onChange={changePictureHandler}
-          />
+          ></TextfieldComp>
+          <TextfieldComp
+            id="quantity"
+            label="Quantity"
+            initialValue={quantity}
+            onChange={changeQtyHandler}
+            onKeyPress={(e) => {
+              addElementEnter(e);
+            }}
+            type="number"
+          ></TextfieldComp>
         </div>
-        <Button
-          id="clearButton"
-          variant="contained"
-          color="primary"
-          onClick={() => clearInputs()}
-        >
-          LIMPIAR
-        </Button>
-        {!props.update && (
-          <Button
-            id="addButton"
-            variant="contained"
-            color="primary"
-            onClick={() => addElement()}
-          >
-            AGREGAR
-          </Button>
+        <TextfieldComp
+          id="image"
+          label="Image URL"
+          initialValue={image}
+          onChange={changeImageHandler}
+          onKeyPress={(e) => {
+            addElementEnter(e);
+          }}
+        ></TextfieldComp>
+      </div>
+      <StyledButtonsContainer>
+        <Button primary size="small" onClick={clearInputs} label="Clear" />
+
+        {!update && (
+          <Button primary size="small" onClick={addElement} label="Add" />
         )}
-        {props.update && (
-          <Button
-            id="updateButton"
-            variant="contained"
-            color="primary"
-            onClick={() => updateElement()}
-          >
-            EDITAR
-          </Button>
+        {update && (
+          <Button primary size="small" onClick={updateElement} label="Update" />
         )}
-      </Context.Provider>
+      </StyledButtonsContainer>
     </div>
   );
 }

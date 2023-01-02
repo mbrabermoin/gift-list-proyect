@@ -86,6 +86,8 @@ export const StyledDivInfoPart = styled.div`
 
 const StyledButtons = styled.div`
   text-align: center;
+  font-family: sans-serif;
+  font-size: 20px;
   width: 100%;
 `;
 export const StyledDivEditButton = styled(StyledButtons)`

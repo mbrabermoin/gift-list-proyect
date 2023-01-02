@@ -32,13 +32,13 @@ function ItemCard({ index, item }) {
           <StyledImage
             width="80px"
             height="80px"
-            src={item.picture}
-            alt={item.item}
+            src={item.image}
+            alt={item.name}
           ></StyledImage>
         </StyledDivImageContainer>
         <StyledDivRecordInfo>
-          <StyledDivInfoPart>{item.item}</StyledDivInfoPart>
-          <StyledDivInfoPart>Cantidad: {item.quantity}</StyledDivInfoPart>
+          <StyledDivInfoPart>{item.name}</StyledDivInfoPart>
+          <StyledDivInfoPart>Quantity: {item.quantity}</StyledDivInfoPart>
         </StyledDivRecordInfo>
       </StyledDivItemContainer>
       <StyledDivActionIcons>

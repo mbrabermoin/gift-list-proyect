@@ -1,4 +1,3 @@
-import "./App.css";
 import Inputs from "./components/Inputs/Inputs.js";
 import { useState } from "react";
 import Context from "./context";
@@ -13,36 +12,33 @@ import {
 function App() {
   const [list, setList] = useState(JSON.parse(localStorage.getItem("lista")));
   const [input, setInput] = useState(
-    <Inputs
-      update={false}
-      item={{ item: "", quantity: 0, picture: "" }}
-    ></Inputs>
+    <Inputs update={false} item={{ name: "", quantity: 0, image: "" }}></Inputs>
   );
 
-  const submitHandler = (text, quantity, picture) => {
-    if (list.filter((e) => e.item === text).length > 0) {
-      alert("Ya esta en la lista.");
+  const submitHandler = (text, quantity, image) => {
+    if (list.filter((e) => e.name === text).length > 0) {
+      alert("Another item with the same name is already on the list.");
     } else {
       localStorage.setItem(
         "lista",
         JSON.stringify([
           ...list,
-          { item: text, quantity: quantity, picture: picture },
+          { name: text, quantity: quantity, image: image },
         ])
       );
-      setList([...list, { item: text, quantity: quantity, picture: picture }]);
+      setList([...list, { name: text, quantity: quantity, image: image }]);
     }
   };
-  const updateHandler = (oldItem, item, quantity, picture) => {
+  const updateHandler = (oldName, name, quantity, image) => {
     var newlist = [];
     for (var i = 0; i < list.length; i++) {
-      if (list[i].item === oldItem) {
-        newlist.push({ item: item, quantity: quantity, picture: picture });
+      if (list[i].name === oldName) {
+        newlist.push({ name: name, quantity: quantity, image: image });
       } else {
         newlist.push({
-          item: list[i].item,
+          name: list[i].name,
           quantity: list[i].quantity,
-          picture: list[i].picture,
+          image: list[i].image,
         });
       }
     }
@@ -67,9 +63,13 @@ function App() {
     setInput(
       <Inputs
         update={false}
-        item={{ item: "", quantity: 0, picture: "" }}
+        item={{ name: "", quantity: 0, image: "" }}
       ></Inputs>
     );
+  };
+  const user = {
+    name: "Matias",
+    surename: "Doe",
   };
   return (
     <StyledDivApp>
@@ -84,12 +84,13 @@ function App() {
           duplicateSetter,
         }}
       >
-        <Header user={"PEPE"}></Header>
+        <Header user={user}></Header>
         {input}
         <StyledDivListContainer>
           <StyledUlList>
             {list.length > 0 &&
               list.map((item, index) => {
+                console.log(item);
                 return (
                   <li data-id={index} key={index}>
                     <ItemCard index={index + 1} item={item} />

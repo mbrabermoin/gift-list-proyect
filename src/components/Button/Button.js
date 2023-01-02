@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { StyledDivButton } from "./Button.styled.js";
 
-function Button({ backgroundColor, label, primary, size }) {
+function Button({ backgroundColor, label, onClick, primary, size }) {
   return (
     <StyledDivButton
       backgroundColor={backgroundColor}
       primary={primary}
       size={size}
+      onClick={onClick}
     >
       {label}
     </StyledDivButton>

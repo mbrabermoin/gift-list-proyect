@@ -1,16 +1,27 @@
 import styled from "styled-components";
+import { TabletMinWidth } from "../../constant.js";
 
 const StyledSmallButton = `
 font-size: 12px;
-padding: 10px 16px;`;
+padding: 10px 8px;
+@media (min-width: ${TabletMinWidth}) {
+  padding: 10px 16px;
+}`;
 
 const StyledMediumButton = `
 font-size: 14px;
-padding: 11px 20px;`;
+padding: 11px 10px;
+@media (min-width: ${TabletMinWidth}) {
+  padding: 11px 20px;
+}
+`;
 
 const StyledLargeButton = `
 font-size: 16px;
-padding: 12px 24px;`;
+padding: 12px 12px;
+@media (min-width: ${TabletMinWidth}) {
+  padding: 12px 24px;
+}`;
 
 const StyledPrimaryButton = `
 color: white;

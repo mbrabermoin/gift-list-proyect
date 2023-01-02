@@ -33,9 +33,9 @@ export const Pokemon = Template.bind({});
 Pokemon.args = {
   index: 1,
   item: {
-    item: "pikachu",
+    name: "pikachu",
     quantity: 6,
-    picture:
+    image:
       "https://www.pngplay.com/wp-content/uploads/10/Pokemon-No-Background.png",
   },
 };
@@ -44,9 +44,9 @@ export const Simpsons = Template.bind({});
 Simpsons.args = {
   index: 1,
   item: {
-    item: "Bart Simpson",
+    name: "Bart Simpson",
     quantity: 1,
-    picture:
+    image:
       "https://www.pngplay.com/wp-content/uploads/6/Bart-Simpson-Character-Background-PNG-Image.png",
   },
 };

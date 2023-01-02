@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
-const StyledDivApp = styled.div`
-  margin-top: 50px;
-  text-align: center;
+export const StyledButtonsContainer = styled.div`
+  margin: 10px;
+  > * {
+    &:last-child {
+      margin: 10px;
+    }
+  }
 `;
-
-export { StyledDivApp };
