@@ -10,7 +10,9 @@ import {
 } from "./App.styled.js";
 
 function App() {
-  const [list, setList] = useState(JSON.parse(localStorage.getItem("lista")));
+  const [list, setList] = useState(
+    JSON.parse(localStorage.getItem("lista")) || []
+  );
   const [input, setInput] = useState(
     <Inputs update={false} item={{ name: "", quantity: 0, image: "" }}></Inputs>
   );
